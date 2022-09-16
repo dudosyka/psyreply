@@ -1,23 +1,25 @@
+<script lang="ts">
+import {defineComponent} from "vue";
+
+export default defineComponent({
+  name: "BlockHeader"
+});
+</script>
+
 <template>
-<div class="container-fluid header-bg">
-  <div class="row">
-    <div class="col logobox">
-      <img src="../../assets/logo.png" class="logoimg">
-      <p class="logotext">PsyReply <span class="subtext"> | Stats</span></p>
-    </div>
-    <div class="col userid">
-      <p class="username">Иван</p>
-      <img src="../../assets/avatardefault.jpg" class="useravatar">
+  <div class="container-fluid header-bg">
+    <div class="row">
+      <div class="col logobox">
+        <img src="../../assets/logo.png" class="logoimg">
+        <p class="logotext">PsyReply <span class="subtext"> | Stats</span></p>
+      </div>
+      <div class="col userid">
+        <p class="username">Иван</p>
+        <img src="../../assets/avatardefault.jpg" class="useravatar">
+      </div>
     </div>
   </div>
-</div>
 </template>
-
-<script>
-export default {
-  name: "BlockHeader"
-}
-</script>
 
 <style scoped>
 .header-bg {

@@ -4,40 +4,31 @@
   <BlockFooter />
 </template>
 
-<script>
-import BlockHeader from "@/components/blocks/BlockHeader";
-import BlockBody from "@/components/blocks/BlockBody";
-import BlockFooter from "@/components/blocks/BlockFooter";
+<script lang="ts">
+import { defineComponent } from 'vue';
+import BlockHeader from "@/components/Blocks/BlockHeader.vue";
+import BlockBody from "@/components/Blocks/BlockBody.vue";
+import BlockFooter from "@/components/Blocks/BlockFooter.vue";
 
-export default {
+export default defineComponent({
   name: 'App',
   components: {
-    BlockFooter,
+    BlockHeader,
     BlockBody,
-    BlockHeader
+    BlockFooter
   }
-}
+});
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+html {
+  font-family: 'Rubik', sans-serif;
 }
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+body {
+  font-family: 'Rubik', sans-serif;
+  background-image: url("./assets/bg_light.jpg");
+  background-position: center;
+  height: 100%;
 }
 </style>

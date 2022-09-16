@@ -2,28 +2,29 @@
   <div class="container-fluid main">
     <h1 class="h1">Привет, Иван!</h1>
     <h2 class="h2">Твоя статистика состояния</h2>
-    <CompChart />
+    <chartComp />
     <h4 class="h4">Фильтры статистики</h4>
-      <button class="btn" id="btn2">Усталость</button>
-      <button class="btn" id="btn3">Депрессия</button>
-      <button class="btn" id="btn4">Выгорание</button>
-      <button class="btn" id="btn1">Тревога</button>
+    <button class="btn" id="btn2">Усталость</button>
+    <button class="btn" id="btn3">Депрессия</button>
+    <button class="btn" id="btn4">Выгорание</button>
+    <button class="btn" id="btn1">Тревога</button>
     <h2 class="h2" id="comment">Что с этим делать?</h2>
-    <CompComment />
+    <commentComp />
   </div>
 </template>
 
-<script>
-import CompChart from "@/components/comp/CompChart";
-import CompComment from "@/components/comp/CompComment";
+<script lang="ts">
+import CommentComp from "@/components/Components/CommentComp.vue";
+import ChartComp from "@/components/Components/ChartComp";
+import {defineComponent} from "vue";
 
-export default {
+export default defineComponent({
   name: "BlockBody",
   components: {
-    CompComment,
-    CompChart
+    "commentComp": CommentComp,
+    "chartComp": ChartComp
   }
-}
+});
 </script>
 
 <style scoped>

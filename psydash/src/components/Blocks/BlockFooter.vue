@@ -1,13 +1,14 @@
 <template>
-<div class="container-fluid footerbg fixed-bottom">
-  <p class="copyright">PsyReply <span class="year"> | 2022</span></p>
-</div>
+  <div class="container-fluid footerbg fixed-bottom">
+    <p class="copyright">PsyReply <span class="year"> | 2022</span></p>
+  </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue';
+export default defineComponent({
   name: "BlockFooter"
-}
+});
 </script>
 
 <style scoped>
