@@ -9,7 +9,7 @@
   <BlockFaq />
   <BlockForm id="call" />
   <BlockFooter />
-<!--  <CompChart />-->
+  <CompChart />
 <!--  <BlockReviews />-->
 </template>
 

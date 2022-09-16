@@ -1,7 +1,5 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap"
-import 'mdb-vue-ui-kit/css/mdb.min.css';
+import VueApexCharts from "vue3-apexcharts";
 
-createApp(App).mount('#app')
+createApp(App).use(VueApexCharts).mount('#app')

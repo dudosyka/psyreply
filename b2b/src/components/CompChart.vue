@@ -28,86 +28,86 @@
     <div class="progress">
       <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">Самоопределение и смыслы</div>
     </div>
-<!--    <div data-aos="zoom-out-up">-->
-<!--      <apexchart type="bar" width="100%" height="350" :options="chartOptions" :series="series"></apexchart>-->
-<!--      <div id="responsive-chart"></div>-->
-<!--    </div>-->
+    <div data-aos="zoom-out-up">
+      <apexchart type="bar" width="100%" height="350" :options="chartOptions" :series="series"></apexchart>
+      <div id="responsive-chart"></div>
+    </div>
   </div>
   </div>
 </template>
 
 <script>
-// export default {
-//   data: function() {
-//     return {
-//       chartOptions: {
-//         chart: {
-//           width: "100%",
-//           foreColor: '#fff',
-//           fontFamily: 'Rubik, sans-serif',
-//           fontSize: '20px',
-//           fontWeight: '700',
-//           toolbar: {
-//             show: false
-//           },
-//           type: 'bar',
-//           height: 350
-//         },
-//         tooltip: {
-//           enabled: false
-//         },
-//         plotOptions: {
-//           bar: {
-//             borderRadius: 4,
-//             horizontal: true,
-//           }
-//         },
-//         responsive: [
-//           {
-//             breakpoint: 800,
-//             options: {
-//               dataLabels: {
-//                 style: {
-//                   fontSize: '9px'
-//                 }
-//               }
-//             }
-//           }
-//         ],
-//         dataLabels: {
-//           enabled: true,
-//           style: {
-//             colors: ['#7a7a7a']
-//           },
-//           formatter: function (val, opt) {
-//             return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
-//           },
-//           offsetX: 0,
-//         },
-//         fill: {
-//           colors: ['#FFF']
-//         },
-//         yaxis: {
-//           labels: {
-//             show: false
-//           }
-//         },
-//         xaxis: {
-//           categories: ['Сложные ситуации', 'Конфликты и недопонимание', 'Эмоциональное и физическое состояние', 'Самооценка и уверенность в себе', 'Продуктивность и мотивация', 'Самоконтроль и деструктивные мысли', 'Самоопределение и смыслы'],
-//           fill: {
-//             colors: ['#F44336', '#E91E63', '#9C27B0']
-//           },
-//         },
-//         legend: {
-//           position: 'top'
-//         },
-//       },
-//       series: [{
-//         data: [1000, 1285, 1794, 1450, 1611, 1781, 1890],
-//       }],
-//     }
-//   },
-// };
+export default {
+  data: function() {
+    return {
+      chartOptions: {
+        chart: {
+          width: "100%",
+          foreColor: '#fff',
+          fontFamily: 'Rubik, sans-serif',
+          fontSize: '20px',
+          fontWeight: '700',
+          toolbar: {
+            show: false
+          },
+          type: 'bar',
+          height: 350
+        },
+        tooltip: {
+          enabled: false
+        },
+        plotOptions: {
+          bar: {
+            borderRadius: 4,
+            horizontal: true,
+          }
+        },
+        responsive: [
+          {
+            breakpoint: 800,
+            options: {
+              dataLabels: {
+                style: {
+                  fontSize: '9px'
+                }
+              }
+            }
+          }
+        ],
+        dataLabels: {
+          enabled: true,
+          style: {
+            colors: ['#7a7a7a']
+          },
+          formatter: function (val, opt) {
+            return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val
+          },
+          offsetX: 0,
+        },
+        fill: {
+          colors: ['#FFF']
+        },
+        yaxis: {
+          labels: {
+            show: false
+          }
+        },
+        xaxis: {
+          categories: ['Сложные ситуации', 'Конфликты и недопонимание', 'Эмоциональное и физическое состояние', 'Самооценка и уверенность в себе', 'Продуктивность и мотивация', 'Самоконтроль и деструктивные мысли', 'Самоопределение и смыслы'],
+          fill: {
+            colors: ['#F44336', '#E91E63', '#9C27B0']
+          },
+        },
+        legend: {
+          position: 'top'
+        },
+      },
+      series: [{
+        data: [1000, 1285, 1794, 1450, 1611, 1781, 1890],
+      }],
+    }
+  },
+};
 </script>
 
 <style scoped>
