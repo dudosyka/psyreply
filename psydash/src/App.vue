@@ -1,23 +1,24 @@
 <template>
-  <BlockHeader />
-  <BlockBody />
-  <BlockFooter />
+  <div>
+    <BlockHeader />
+    <BlockBody />
+    <BlockFooter />
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script>
 import BlockHeader from "@/components/Blocks/BlockHeader.vue";
 import BlockBody from "@/components/Blocks/BlockBody.vue";
 import BlockFooter from "@/components/Blocks/BlockFooter.vue";
 
-export default defineComponent({
+export default {
   name: 'App',
   components: {
     BlockHeader,
     BlockBody,
     BlockFooter
   }
-});
+};
 </script>
 
 <style>
@@ -27,7 +28,7 @@ html {
 }
 body {
   font-family: 'Rubik', sans-serif;
-  background-image: url("./assets/bg_light.jpg");
+  background-image: url("assets/bg_light.jpg");
   background-position: center;
   height: 100%;
 }

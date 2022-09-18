@@ -2,7 +2,9 @@
   <div class="container-fluid main">
     <h1 class="h1">Привет, Иван!</h1>
     <h2 class="h2">Твоя статистика состояния</h2>
-    <chartComp />
+    <template  v-for="chart in charts">
+      <chartComp :chartData="chart.chartData" :key="chart.id" />
+    </template>
     <h4 class="h4">Фильтры статистики</h4>
     <button class="btn" id="btn2">Усталость</button>
     <button class="btn" id="btn3">Депрессия</button>
@@ -13,18 +15,54 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import CommentComp from "@/components/Components/CommentComp.vue";
 import ChartComp from "@/components/Components/ChartComp";
-import {defineComponent} from "vue";
+import axios from "axios";
 
-export default defineComponent({
+export default {
   name: "BlockBody",
+  data() {
+    return {
+      charts: [],
+      labels: [
+          "Эмоциональное выгорание", "Активность", "Мотивация", "Усталость", "Тревога"
+      ],
+      colors: [
+        '#ff00ff', '#ffff00', '#ff0000', '#7bd01a', '#7bd01a',
+      ]
+    }
+  },
   components: {
     "commentComp": CommentComp,
     "chartComp": ChartComp
+  },
+  async created() {
+    this.charts = [];
+    await axios.get('http://localhost:3000/uid/' + localStorage.getItem('uid')).then(res => {
+      console.log(res);
+      const labels = res.data.map((el) => {
+        const date = new Date(el.timestamp);
+        return ((date.getMonth() > 9) ? date.getMonth() : (`0${date.getMonth()}`))+ "." + date.getDate();
+      });
+      for (let i = 1; i < 6; i++) {
+        const datasets = [
+          {
+            label: this.labels[i - 1],
+            data: res.data.map((el) => {
+              return el["answ" + i];
+            }),
+            backgroundColor: this.colors[i - 1]
+          }
+        ];
+        this.charts.push({
+          id: i,
+          chartData: {labels, datasets}
+        })
+      }
+    });
   }
-});
+};
 </script>
 
 <style scoped>
