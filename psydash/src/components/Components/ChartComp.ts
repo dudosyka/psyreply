@@ -60,39 +60,16 @@ export default defineComponent({
             default: () => []
         }
     },
-    async created() {
-        // @ts-ignore
-        this.data = await axios.get('http://localhost:3000/uid/' + localStorage.getItem('uid')).then(res => res);
-    },
     async mounted() {
         console.log(this.data)
     },
     setup(props, data) {
         console.log(data)
         const chartData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-                {
-                    label: 'Data One',
-                    backgroundColor: '#f81179',
-                    data: [40, 39, 10, 410, 39, 80, 40]
-                },
-                {
-                    label: 'Data One',
-                    backgroundColor: '#117979',
-                    data: [40, 39, 10, 240, 39, 80, 40]
-                },
-                {
-                    label: 'Data One',
-                    backgroundColor: '#f87911',
-                    data: [40, 39, 120, 40, 39, 80, 40]
-                },
-                {
-                    label: 'Data One',
-                    backgroundColor: '#ff11ff',
-                    data: [40, 39, 10, 420, 39, 80, 40]
-                }
-            ]
+            // @ts-ignore
+            labels: JSON.parse(localStorage.getItem('labels')),
+            // @ts-ignore
+            datasets: JSON.parse(localStorage.getItem('datasets'))
         }
 
         const chartOptions = {
