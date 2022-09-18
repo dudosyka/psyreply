@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "@popperjs/core": "^2.11.6",
     "apexcharts": "^3.35.5",
+    "poppers": "^0.1.2",
     "vue-apexcharts": "^1.6.2",
     "vue3-apexcharts": "^1.4.1"
   }

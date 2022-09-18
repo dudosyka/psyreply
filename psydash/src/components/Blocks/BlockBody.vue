@@ -2,8 +2,26 @@
   <div class="container-fluid main">
     <h1 class="h1">Привет, {{ name }}</h1>
     <h2 class="h2">Твоя статистика состояния</h2>
-    <template  v-for="chart in charts">
-      <chartComp :chartData="chart.chartData" :key="chart.id" />
+    <template v-if="loaded">
+      <nav>
+        <div class="nav nav-tabs navbar-bottom" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="nav-burnout-tab" data-bs-toggle="tab" data-bs-target="#nav-burnout" type="button" role="tab" aria-controls="nav-burnout" aria-selected="true" @click="changeTo('burnout')">Выгорание</button>
+          <button class="nav-link" id="nav-activity-tab" data-bs-toggle="tab" data-bs-target="#nav-activity" type="button" role="tab" aria-controls="nav-activity" aria-selected="false" @click="changeTo('activity')">Активность</button>
+          <button class="nav-link" id="nav-motivation-tab" data-bs-toggle="tab" data-bs-target="#nav-motivation" type="button" role="tab" aria-controls="nav-motivation" aria-selected="false" @click="changeTo('motivation')">Мотивация</button>
+          <button class="nav-link" id="nav-fatigue-tab" data-bs-toggle="tab" data-bs-target="#nav-fatigue" type="button" role="tab" aria-controls="nav-fatigue" aria-selected="false" @click="changeTo('fatigue')">Усталость</button>
+          <button class="nav-link" id="nav-anxiety-tab" data-bs-toggle="tab" data-bs-target="#nav-anxiety" type="button" role="tab" aria-controls="nav-anxiety" aria-selected="false" @click="changeTo('anxiety')">Тревога</button>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-burnout" role="tabpanel" aria-labelledby="nav-burnout-tab"><chartComp id="burnout" :chartData="charts[0].chartData" /></div>
+        <div class="tab-pane fade" id="nav-activity" role="tabpanel" aria-labelledby="nav-activity-tab"><chartComp id="activity" :chartData="charts[1].chartData" /></div>
+        <div class="tab-pane fade" id="nav-motivation" role="tabpanel" aria-labelledby="nav-motivation-tab"><chartComp id="motivation" :chartData="charts[2].chartData" /></div>
+        <div class="tab-pane fade" id="nav-fatigue" role="tabpanel" aria-labelledby="nav-fatigue-tab"><chartComp id="fatigue" :chartData="charts[3].chartData" /></div>
+        <div class="tab-pane fade" id="nav-anxiety" role="tabpanel" aria-labelledby="nav-anxiety-tab"><chartComp id="anxiety" :chartData="charts[4].chartData" /></div>
+      </div>
+    </template>
+    <template v-else>
+      <h1>Идите нахер!</h1>
     </template>
     <h4 class="h4">Фильтры статистики</h4>
     <button class="btn" id="btn2">Усталость</button>
@@ -31,20 +49,28 @@ export default {
       colors: [
         '#ff00ff', '#ffff00', '#ff0000', '#7bd01a', '#7bd01a',
       ],
-      name: ""
+      name: "",
+      loaded: false
     }
   },
   components: {
     "commentComp": CommentComp,
     "chartComp": ChartComp
   },
+  methods: {
+    changeTo(id) {
+      document.getElementById(id).style.height = '300px';
+      var resizeEvent = window.document.createEvent('UIEvents');
+      resizeEvent.initUIEvent('resize', true, false, window, 0);
+      window.dispatchEvent(resizeEvent);
+    }
+  },
   async created() {
     this.charts = [];
     axios.get('https://mailer.psyreply.com/name/'+ localStorage.getItem('uid')).then(res => {
-      this.name = res.data.name;
+      this.name = res.data.name.name;
     })
     await axios.get('https://mailer.psyreply.com/uid/'+localStorage.getItem('uid')).then(res => {
-      console.log(res);
       const labels = res.data.map((el) => {
         const date = new Date(el.timestamp);
         return ((date.getMonth() > 9) ? date.getMonth() : (`0${date.getMonth()}`))+ "." + date.getDate();
@@ -64,6 +90,7 @@ export default {
           chartData: {labels, datasets}
         })
       }
+      this.loaded = true;
     });
   }
 };

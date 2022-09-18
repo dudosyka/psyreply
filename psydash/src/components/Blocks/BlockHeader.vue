@@ -14,7 +14,8 @@ export default {
       </div>
       <div class="col userid">
         <p class="username">{{ name }}</p>
-        <img :src="img ?? '../../assets/avatardefault.jpg'" class="useravatar">
+        <img v-if="img" :src="img" class="useravatar">
+        <img v-else src="../../assets/avatardefault.jpg" class="useravatar">
       </div>
     </div>
   </div>
@@ -32,7 +33,11 @@ export default {
       },
       created() {
         axios.get('https://mailer.psyreply.com/name/'+ localStorage.getItem('uid')).then(res => {
-          this.name = res.data.name;
+          this.name = res.data.name.name;
+        })
+        axios.get('https://mailer.psyreply.com/name/'+ localStorage.getItem('uid')).then(res => {
+          console.log(res);
+          this.img = res.data.name.image;
         })
       }
     }

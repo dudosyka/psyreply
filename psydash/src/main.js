@@ -3,6 +3,7 @@ import App from './App.vue'
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
+import {popper} from "@popperjs/core";
 
 
 Vue.config.productionTip = false
