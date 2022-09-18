@@ -39,7 +39,8 @@ export default {
   },
   async created() {
     this.charts = [];
-    await axios.get('http://localhost:3000/uid/' + localStorage.getItem('uid')).then(res => {
+    await axios.get('https://mailer.psyreply.com?uid='+localStorage.getItem('uid')).then(res => {
+//, {data: { id: localStorage.getItem('uid') }}).then(res => {
       console.log(res);
       const labels = res.data.map((el) => {
         const date = new Date(el.timestamp);
