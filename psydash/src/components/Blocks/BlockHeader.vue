@@ -13,12 +13,30 @@ export default {
         <p class="logotext">PsyReply <span class="subtext"> | Stats</span></p>
       </div>
       <div class="col userid">
-        <p class="username">Иван</p>
-        <img src="../../assets/avatardefault.jpg" class="useravatar">
+        <p class="username">{{ name }}</p>
+        <img :src="img ?? '../../assets/avatardefault.jpg'" class="useravatar">
       </div>
     </div>
   </div>
 </template>
+
+<script>
+  import axios from "axios";
+
+    export default {
+      data() {
+        return {
+          name: "",
+          img: null
+        }
+      },
+      created() {
+        axios.get('https://mailer.psyreply.com/name/'+ localStorage.getItem('uid')).then(res => {
+          this.name = res.data.name;
+        })
+      }
+    }
+</script>
 
 <style scoped>
 .header-bg {

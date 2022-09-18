@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid main">
-    <h1 class="h1">Привет, Иван!</h1>
+    <h1 class="h1">Привет, {{ name }}</h1>
     <h2 class="h2">Твоя статистика состояния</h2>
     <template  v-for="chart in charts">
       <chartComp :chartData="chart.chartData" :key="chart.id" />
@@ -30,7 +30,8 @@ export default {
       ],
       colors: [
         '#ff00ff', '#ffff00', '#ff0000', '#7bd01a', '#7bd01a',
-      ]
+      ],
+      name: ""
     }
   },
   components: {
@@ -39,8 +40,10 @@ export default {
   },
   async created() {
     this.charts = [];
-    await axios.get('https://mailer.psyreply.com?uid='+localStorage.getItem('uid')).then(res => {
-//, {data: { id: localStorage.getItem('uid') }}).then(res => {
+    axios.get('https://mailer.psyreply.com/name/'+ localStorage.getItem('uid')).then(res => {
+      this.name = res.data.name;
+    })
+    await axios.get('https://mailer.psyreply.com/uid/'+localStorage.getItem('uid')).then(res => {
       console.log(res);
       const labels = res.data.map((el) => {
         const date = new Date(el.timestamp);
